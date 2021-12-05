@@ -23,10 +23,11 @@ def write_text(canvas_obj, text, text_box, font_name, font_size, font_color):
 
 
 # register new font
-FONT_FILE = "chinese.msyh.ttf"
+FONT_PATH = "font/"
+FONT_FILE = FONT_PATH + "chinese.msyh.ttf"
 pdfmetrics.registerFont(TTFont('MicrosoftYaHei', FONT_FILE))
 
-PROJECT_PATH = "二等奖/"
+PROJECT_PATH = "example/"
 DATA_FILE = PROJECT_PATH + "data/data.csv"
 TEMPLATE_FILE = PROJECT_PATH + "template/template.pdf"
 OUTPUT_FILE = PROJECT_PATH + "output/%s.pdf"
@@ -40,35 +41,21 @@ with open(DATA_FILE, newline='') as csvfile:
         can = canvas.Canvas(packet, pagesize=pagesize)
 
         text_box = (0.76 * pagesize[0], 0.95 * pagesize[0], 0.885 * pagesize[1])
-        text = row["证书编号"]
+        text = row["编号"]
         font_name = 'MicrosoftYaHei'
         font_size = 18
         font_color = (0.25, 0.25, 0.25)
         write_text(can, text, text_box, font_name, font_size, font_color)
 
-        text_box = (0.33 * pagesize[0], 0.74 * pagesize[0], 0.44 * pagesize[1])
-        text = row["参赛作品"]
+        text_box = (0.37 * pagesize[0], 0.74 * pagesize[0], 0.375 * pagesize[1])
+        text = row["作品"]
         font_name = 'MicrosoftYaHei'
         font_size = 28
         font_color = (0.4, 0.4, 0.4)
         write_text(can, text, text_box, font_name, font_size, font_color)
 
-        text_box = (0.33 * pagesize[0], 0.74 * pagesize[0], 0.388 * pagesize[1])
-        text = row["参赛单位"]
-        font_name = 'MicrosoftYaHei'
-        font_size = 28
-        font_color = (0.4, 0.4, 0.4)
-        write_text(can, text, text_box, font_name, font_size, font_color)
-
-        text_box = (0.33 * pagesize[0], 0.74 * pagesize[0], 0.33 * pagesize[1])
-        text = row["团队成员"]
-        font_name = 'MicrosoftYaHei'
-        font_size = 28
-        font_color = (0.4, 0.4, 0.4)
-        write_text(can, text, text_box, font_name, font_size, font_color)
-
-        text_box = (0.33 * pagesize[0], 0.74 * pagesize[0], 0.27 * pagesize[1])
-        text = row["指导老师"]
+        text_box = (0.37 * pagesize[0], 0.74 * pagesize[0], 0.285 * pagesize[1])
+        text = row["队员"]
         font_name = 'MicrosoftYaHei'
         font_size = 28
         font_color = (0.4, 0.4, 0.4)
@@ -89,7 +76,7 @@ with open(DATA_FILE, newline='') as csvfile:
         page.mergePage(new_pdf.getPage(0))
         output.addPage(page)
         # finally, write "output" to a real file
-        file_name = OUTPUT_FILE % row["证书编号"]
+        file_name = OUTPUT_FILE % row["编号"]
         outputStream = open(file_name, "wb")
         output.write(outputStream)
         outputStream.close()

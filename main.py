@@ -32,7 +32,7 @@ DATA_FILE = PROJECT_PATH + "data/data.csv"
 TEMPLATE_FILE = PROJECT_PATH + "template/template.pdf"
 OUTPUT_FILE = PROJECT_PATH + "output/%s.pdf"
 
-with open(DATA_FILE, newline='') as csvfile:
+with open(DATA_FILE, newline='', encoding='utf-8') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
 
